@@ -1,0 +1,88 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:700);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+
+body{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+md-content.md-default-theme {
+  background-color: #eee;
+}
+
+md-card {
+  background-color: #fff;
+}
+md-card h2:first-of-type {
+  margin-top: 0;
+}
+
+md-toolbar .md-button.md-default-theme {
+  border-radius: 99%;
+}
+
+h2 {
+  font-weight: 400;
+}
+
+.md-toolbar-tools-bottom {
+  font-size: small;
+}
+.md-toolbar-tools-bottom :last-child {
+  opacity: 0.8;
+}
+
+md-toolbar:not(.md-hue-1),
+.md-fab {
+  fill: #fff;
+}
+
+md-sidenav {
+  fill: #737373;
+}
+md-sidenav ng-md-icon {
+  position: relative;
+  top: 5px;
+}
+
+.user-avatar {
+  border-radius: 99%;
+}
+
+.layout1{
+  background-image: url('../img/Wall 2 (1).png');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.layout2{
+   background-image: url('../img/sUNNY-01.png');
+   -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+md-sidenav, 
+md-sidenav.md-locked-open, 
+md-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 200px !important;
+    width: 85vw !important;
+    max-width: 200px !important;
+} 
+
+md-tabs.md-default-theme md-tabs-ink-bar {
+    background-color: #fff !important;
+}
+
+.white-text{
+  color:#fff;
+}
+
+.black-text{
+  color:#000;
+}
+
+.bold-text,h1,h2,h3,h4,h5{
+  font-family: 'Ubuntu', sans-serif;
+}

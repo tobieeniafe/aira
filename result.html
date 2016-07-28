@@ -1,0 +1,27 @@
+<div layout layout="row" layout-align="center center">
+              <h2 class="white-text">{{location}}</h2>
+              <br/>
+          </div>
+
+           <div  layout="column" layout-padding layout-align="center center">
+       <md-card>
+        <img ng-src="img/doctor.gif" class="md-card-image" alt="Washed Out" width="400" height="400">
+        <md-card-title>
+          <md-card-title-text>
+           <h2 style="text-align:center"> Test Result </h2>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p style="text-align:center">
+          	<h4>Having analyzed the symptoms supplied. You have been diagnosed with</h4>
+          	<h2 ng-repeat="s in re.r" style="text-align:center"><a href="https://en.wikipedia.org/wiki/{{s}}" target="_blank">{{s}}</a></h2>
+          	<h4> It is recommended that you see a doctor</h4>
+          </p>
+          <md-card-actions layout="row" layout-align="end center">
+          <md-button>Save This Data</md-button>
+          <md-button ng-click="home()">Get Another Diagnosis</md-button>
+        </md-card-actions>
+        </md-card-content>
+      </md-card>
+	   
+           </div>
