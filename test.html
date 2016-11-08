@@ -1,0 +1,24 @@
+ 		  <div layout layout="row" layout-align="center center">
+              <h2 class="white-text"><i class="fa fa-map-marker" style="font-size: 35px"></i> {{location}}</h2>
+              <br/>
+          </div>
+
+           <div  layout="row" style="padding-left:200px">
+	           	<md-list flex>
+	           		<div ng-repeat="sick in symptoms"><ng-md-icon icon="accessibility" style="fill:white"></ng-md-icon>
+	           			<label style="color:#fff" class="bold-text">{{sick.sickness}}</label>
+		           		<!-- <md-slider ng-model="data[sick.key]" aria-label="Switch$index" min='0' max='10' step='1' flex md-discrete style='max-width:500px'></md-slider> -->
+		           		<md-slider ng-model="value" aria-label="Switch$index" min='0' max='10' step='1' flex md-discrete style='max-width:500px'></md-slider>
+		           		<!-- {{sick.score * value}} -->
+
+		           		
+					</div>
+					<md-button style="margin:40px"class="md-raised md-warn" ng-click="calculate()">Submit Test</md-button>
+				</md-list>
+				
+           </div>
+
+
+
+
+

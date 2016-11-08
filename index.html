@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <title>Aircheck</title>
 
+        <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/style.css"> 
-    
+
   </head>
 
   <body>
 
     <html lang="en" ng-app="StarterApp">
   <head>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
+    <link rel="stylesheet" href="css/angular-material.min.css">
   </head>
   <body layout="row" ng-controller="AppCtrl">
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" 
@@ -30,15 +31,15 @@
       <md-list>
         <md-item>
           
-            <md-item-content md-ink-ripple layout="row" layout-align="start center" ng-click="my_loc()">
+            <a href="#/"><md-item-content md-ink-ripple layout="row" layout-align="start center" ng-click="my_loc()">
               <div class="inset">
                 <ng-md-icon icon="my_location"></ng-md-icon>
               </div>
               <div class="inset">My Location</div>
-            </md-item-content>
+            </md-item-content></a>
           
         </md-item>
-        <md-item>
+        <a href=""><md-item>
           
             <md-item-content md-ink-ripple layout="row" layout-align="start center" ng-click="air_check()">
               <div class="inset">
@@ -47,37 +48,22 @@
               <div class="inset">Aircheck</div>
             </md-item-content>
           
-        </md-item>
-      <md-divider></md-divider>
-      <md-subheader>Management</md-subheader>
-      <md-item ng-repeat="item in admin">
-        <a>
-          <md-item-content md-ink-ripple layout="row" layout-align="start center">
-            <div class="inset">
-              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-            </div>
-            <div class="inset">{{item.title}}
-            </div>
-          </md-item-content>
-        </a>
-      </md-item>
+        </md-item></a>
+      
     </md-list>
     </md-sidenav>
     <div layout="column" class="relative" layout-fill role="main">
-     <!-- <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
-        <ng-md-icon icon="add"></ng-md-icon>
-      </md-button>-->
+    
 
-      <md-toolbar ng-show="!showSearch">
+      
+
+      <md-content class="layout1" style='min-height: 100%'>
+        <md-toolbar ng-show="!showSearch" style='background-color: rgba(255,255,255,0.1);'>
         <div class="md-toolbar-tools">
           <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
             <ng-md-icon icon="menu"></ng-md-icon>
           </md-button>
-          <h3>
-            <a href="#" >
-              {{page_title}}
-            </a>
-          </h3>
+          
           <span flex></span>
           <!--search and more-->
           <md-button aria-label="Search" ng-click="showSearch = !showSearch">
@@ -89,19 +75,10 @@
           <!--search and more-->
         </div>
 
-         <md-tabs md-stretch-tabs class="md-primary" md-selected="selectedIndex">
-          <md-tab id="tab1" aria-controls="tab1-content" md-on-select="weather()">
-            Weather
-          </md-tab>
-          <md-tab id="tab2" aria-controls="tab2-content" md-on-select="profile()">
-            Profile
-          </md-tab>
-        </md-tabs>
-
       </md-toolbar>
 
 
-      <md-toolbar class="md-hue-1" ng-show="showSearch">
+      <md-toolbar class="md-hue-1" ng-show="showSearch" style='background-color: rgba(255,255,255,0.1);'>
         <div class="md-toolbar-tools">
           <md-button ng-click="showSearch = !showSearch" aria-label="Back">
             <ng-md-icon icon="arrow_back"></ng-md-icon>
@@ -122,50 +99,53 @@
         </div>       
       </md-toolbar>
 
-      <md-content class="layout1">
+
+
         <ui-view flex layout-padding layout-fill>
           <div layout layout="row" layout-align="center center">
-              <h2 class="white-text">{{location}}</h2>
+              <h2 class="white-text"><i class="fa fa-map-marker" style="font-size: 35px"></i> {{location}}</h2>
               <br/>
           </div>
 
            <div  layout="row" layout-padding layout-align="center center">
               <div flex="30">
-                <h4 class="white-text">Humidity : {{weather.main.humidity}}</h4>   
+                <h4 class="white-text">Humidity : {{weather.main.humidity + '%'}}</h4>   
                 <img src="img/10acbfc6abf3a749e578bc80bfc656b1.png" width="128" height="128">
               </div>
 
                <div flex="30">
-                <h4 class="white-text">Temperature : {{weather.main.temp}}</h4>   
-               <!-- iCon by oNlineWebFonts.Com --> <img src="data:image/svg+xml;base64,CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwMCAxMDAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPG1ldGFkYXRhPiBTdmcgVmVjdG9yIEljb25zIDogaHR0cDovL3d3dy5vbmxpbmV3ZWJmb250cy5jb20vaWNvbiA8L21ldGFkYXRhPgogIDxnPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDUxMS4wMDAwMDApIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiPjxwYXRoIGQ9Ik00NzI1LjUsNDkwOC43Yy0xMTcuMi05NS45LTEyNy45LTE0My45LTE0My44LTc0MC43bC0yMS4zLTY0NC44bC0xNjUuMi0zMmMtMzgzLjctNzQuNi04NDcuMy0yNTUuOC0xMTgzLTQ1OC4zbC0zNTcuMS0yMTguNWwtNDM3LDQzMS43Yy0zNzguMywzNzguNC00NTguMyw0MzEuNy02MjMuNSw0MzEuN2MtMjM5LjgsMC0zNjcuNy0xMzMuMi0zNjcuNy0zNzguNGMwLTE1NC41LDY0LTIzOS44LDQzMS42LTYxMi44bDQzMS43LTQzN2wtMjE4LjUtMzU3LjFjLTIwMi41LTMzNS43LTM4My43LTc5OS4zLTQ1OC4zLTExODNsLTMyLTE2NS4yTDkzNi43LDUyM2MtNTk2LjktMTYtNjQ0LjgtMjYuNy03NDAuNy0xNDMuOUM2OCwyMTkuMiw2OC00LjYsMTk1LjktMTY0LjRjOTYtMTE3LjIsMTQzLjktMTI3LjksNzQwLjctMTQzLjlsNjQ0LjgtMjEuM2wzMi0xNjUuMmM3NC42LTM4My43LDI1NS44LTg0Ny4zLDQ1OC4zLTExODNsMjE4LjUtMzU3LjFsLTQzNy00NDIuM2MtMzc4LjQtMzc4LjMtNDQyLjMtNDY4LjktNDM3LTYxOC4xYzUuMy0yMTguNSwxNTkuOS0zNzMsMzc4LjMtMzc4LjRjMTQ5LjMtNS4zLDIzOS44LDU4LjYsNjE4LjIsNDM3bDQ0Mi4zLDQzN2wzNTcuMS0yMTguNWMzMzUuNy0yMDIuNSw3OTkuMy0zODMuNiwxMTgzLTQ1OC4zbDE2NS4yLTMybDIxLjMtNjQ0LjhjMTYtNTk2LjksMjYuNi02NDQuOCwxNDMuOC03NDAuN2MxNTkuOS0xMjcuOSwzODMuNy0xMjcuOSw1NDMuNiwwYzExNy4zLDk1LjksMTI3LjksMTQzLjgsMTQzLjksNzQwLjdsMjEuMyw2NDQuOGwxNjUuMiwzMmMzODMuNyw3NC42LDg0Ny4zLDI1NS44LDExODMsNDU4LjNsMzU3LjEsMjE4LjVsNDQyLjMtNDM3YzM3OC4zLTM3OC4zLDQ2OC45LTQ0Mi4zLDYxOC4xLTQzN2MyMTguNSw1LjQsMzczLDE1OS45LDM3OC40LDM3OC40YzUuMywxNDkuMi01OC42LDIzOS44LTQzNyw2MTguMWwtNDM3LDQ0Mi4zbDIxOC41LDM1Ny4xYzIwMi41LDMzNS43LDM4My42LDc5OS4zLDQ1OC4zLDExODNsMzIsMTY1LjJsNjQ0LjgsMjEuM2M1OTYuOSwxNiw2NDQuOCwyNi42LDc0MC43LDE0My45Qzk4NTItOTUuMiw5OTAwLDI3LjQsOTkwMCwxMDcuM2MwLDc5LjktNDgsMjAyLjUtMTAxLjMsMjcxLjhDOTcwMi44LDQ5Ni4zLDk2NTQuOSw1MDcsOTA1OCw1MjNsLTY0NC44LDIxLjNsLTMyLDE2NS4yYy03NC42LDM4My43LTI1NS44LDg0Ny4zLTQ1OC4zLDExODNsLTIxOC41LDM1Ny4xbDQzMS43LDQzN2MzNzguMywzNzguNCw0MzEuNiw0NTguMyw0MzEuNiw2MjMuNWMwLDIzNC41LTEzOC41LDM3My0zNzMsMzc4LjRjLTE0My45LDUuMy0yMzQuNS01OC42LTYxMi44LTQzN2wtNDQyLjMtNDM3bC0zNTcuMSwyMTguNWMtMzM1LjcsMjAyLjUtNzk5LjQsMzgzLjctMTE4Myw0NTguM2wtMTY1LjIsMzJMNTQxMyw0MTY4Yy0xNiw1OTYuOC0yNi42LDY0NC44LTE0My45LDc0MC43Yy02OS4zLDUzLjMtMTkxLjgsMTAxLjMtMjcxLjgsMTAxLjNDNDkxNy40LDUwMTAsNDc5NC44LDQ5NjIsNDcyNS41LDQ5MDguN3ogTTU5MTMuOSwyNTY0YzE3NjkuMi02NzYuOCwyMjU5LjUtMjk1Ny42LDkyMS45LTQyOTUuMmMtNTQ4LjktNTU0LjItMTIzMS04MTAtMjAxOS43LTc2MkMzMjY1LjQtMjM5MiwyMTQxLTkzMS44LDI0MzQuMSw1OTcuNmMxODYuNSw5NTMuOSw5MDUuOSwxNzQ3LjksMTgzOC41LDIwMjVDNDcxNC45LDI3NTAuNSw1NDg3LjYsMjcyMy45LDU5MTMuOSwyNTY0eiIgc3R5bGU9ImZpbGw6I2Y0YzYwMCI+PC9wYXRoPjwvZz48L2c+PC9zdmc+CiAg" width="128" height="128">
+                <h4 class="white-text">Temperature : {{weather.main.temp - 273.15 | number: 2}}</h4>   
+               <img src="img/weather.svg" width="128" height="128">
               </div>
 
                <div flex="30">
-                <h4 class="white-text">Air Pressure : {{weather.main.pressure}}</h4>   
-              <!-- iCon by oNlineWebFonts.Com --> <img src="data:image/svg+xml;base64,CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwMCAxMDAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPG1ldGFkYXRhPiBTdmcgVmVjdG9yIEljb25zIDogaHR0cDovL3d3dy5vbmxpbmV3ZWJmb250cy5jb20vaWNvbiA8L21ldGFkYXRhPgogIDxnPjxwYXRoIGQ9Ik05NDYuNiw3NzguNEg1NGMtMjQuNSwwLTQ0LDE5LjYtNDQsNDRjMCwyNC41LDE5LjYsNDQsNDQsNDRIOTQ2YzI0LjUsMCw0NC0xOS42LDQ0LTQ0bDAsMEM5OTAsNzk4LjcsOTcwLjQsNzc5LjEsOTQ2LjYsNzc4LjR6IiBzdHlsZT0iZmlsbDojMTFjZDZlIj48L3BhdGg+PHBhdGggZD0iTTY0NS44LDM1Ny45YzI3LjcsMCw0OS42LTIyLjEsNDkuNi00OS42YzAtMjcuNy0yMi44LTQ5LjYtNDkuNi00OS42Yy0yNy43LDAtNDkuNiwyMi4xLTQ5LjYsNDkuNkM1OTYuMywzMzYsNjE4LjQsMzU3LjksNjQ1LjgsMzU3Ljl6IiBzdHlsZT0iZmlsbDojMTFjZDZlIj48L3BhdGg+PHBhdGggZD0iTTg0Ni4yLDIzMi40YzE2LDAsMjguNy0xMi44LDI4LjctMjguN2MwLTE2LTEyLjgtMjguNy0yOC43LTI4LjdjLTE2LDAtMjguNywxMi44LTI4LjcsMjguN0M4MTcuNSwyMTkuNiw4MzAuMiwyMzIuNCw4NDYuMiwyMzIuNHoiIHN0eWxlPSJmaWxsOiMxMWNkNmUiPjwvcGF0aD48cGF0aCBkPSJNNDgyLjUsNjQxLjljMjcuNywwLDQ5LjYtMjIuMSw0OS42LTQ5LjZjMC0yNy0yMi4xLTQ5LjYtNDkuNi00OS42Yy0yNy43LDAtNDkuNiwyMi4xLTQ5LjYsNDkuNkM0MzIuOSw2MTkuOCw0NTQuOCw2NDEuOSw0ODIuNSw2NDEuOUw0ODIuNSw2NDEuOXoiIHN0eWxlPSJmaWxsOiMxMWNkNmUiPjwvcGF0aD48cGF0aCBkPSJNODg3LjIsNjA0LjRjMjcuNywwLDQ5LjYtMjIuMSw0OS42LTQ5LjZjMC0yNy43LTIyLjgtNDkuNi00OS42LTQ5LjZjLTI3LjcsMC00OS42LDIyLjEtNDkuNiw0OS42QzgzNy43LDU4Mi4zLDg1OS42LDYwNC40LDg4Ny4yLDYwNC40eiIgc3R5bGU9ImZpbGw6IzExY2Q2ZSI+PC9wYXRoPjxwYXRoIGQ9Ik00MTMuNywzMTkuNGMxNiwwLDI4LjctMTIuOCwyOC43LTI4LjdTNDMwLjEsMjYyLDQxMy43LDI2MmMtMTYsMC0yOC43LDEyLjgtMjguNywyOC43QzM4NSwzMDYuNCwzOTcuOCwzMTkuNCw0MTMuNywzMTkuNHoiIHN0eWxlPSJmaWxsOiMxMWNkNmUiPjwvcGF0aD48cGF0aCBkPSJNMTE2LjEsMTkwLjljMTYsMCwyOC43LTEyLjgsMjguNy0yOC43YzAtMTYtMTIuOC0yOC43LTI4LjctMjguN2MtMTYsMC0yOC43LDEyLjgtMjguNywyOC43Qzg3LjIsMTc4LjIsMTAwLjIsMTkwLjksMTE2LjEsMTkwLjl6IiBzdHlsZT0iZmlsbDojMTFjZDZlIj48L3BhdGg+PHBhdGggZD0iTTEzNS4xLDU2My42YzI3LjcsMCw0OS42LTIyLjEsNDkuNi00OS42YzAtMjcuNy0yMi44LTQ5LjYtNDkuNi00OS42Yy0yNy43LDAtNDkuNiwyMi4xLTQ5LjYsNDkuNkM4NS41LDU0MS41LDEwNy40LDU2My42LDEzNS4xLDU2My42eiIgc3R5bGU9ImZpbGw6IzExY2Q2ZSI+PC9wYXRoPjxwYXRoIGQ9Ik02MTUuNCw2OTcuOGMwLDE2LDEyLjgsMjguNywyOC43LDI4LjdjMTYsMCwyOC43LTEyLjgsMjguNy0yOC43cy0xMi4zLTI4LjctMjguNy0yOC43QzYyOC40LDY2OS4xLDYxNS40LDY4Mi4xLDYxNS40LDY5Ny44eiIgc3R5bGU9ImZpbGw6IzExY2Q2ZSI+PC9wYXRoPjxwYXRoIGQ9Ik0xMDUuNyw3MTAuNGMwLDE2LDEyLjgsMjguNywyOC43LDI4LjdjMTYsMCwyOC43LTEyLjgsMjguNy0yOC43cy0xMi4zLTI4LjctMjguNy0yOC43QzExOC41LDY4MS40LDEwNS43LDY5NC40LDEwNS43LDcxMC40eiIgc3R5bGU9ImZpbGw6IzExY2Q2ZSI+PC9wYXRoPjwvZz48L3N2Zz4KICA=" width="128" height="128">
+                <h4 class="white-text">Air Pressure : {{weather.main.pressure + 'mb'}}</h4>   
+              <img src="img/airpressure.svg" width="128" height="128">
               </div>
 
             </div>
 
             <div flex="30" layout="column" layout-align="center center">
                 <h4 class="white-text">Weather Condition : {{weather.weather[0].description}}</h4>   
-              <!-- iCon by oNlineWebFonts.Com --> <!-- iCon by oNlineWebFonts.Com --> <img src="data:image/svg+xml;base64,CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwMCAxMDAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPG1ldGFkYXRhPiBTdmcgVmVjdG9yIEljb25zIDogaHR0cDovL3d3dy5vbmxpbmV3ZWJmb250cy5jb20vaWNvbiA8L21ldGFkYXRhPgogIDxnPjxwYXRoIGQ9Ik0xNzEuNyw3NTMuOUMxMDMuMSw3NDguNCw1MSw2OTEuNCw1MSw2MjAuNGMwLTY1LjUsNDUuOS0xMjEuMywxMDkuNi0xMzEuN2wxOC40LTMuMWwtMS44LTE5LjZjMC42LTEyMy43LDkzLjEtMjE3LjQsMjE4LjctMjI2LjZjMzMuMS0xNi41LDY5LjgtMjcuNiwxMDktMzAuNmMtMjYuMy03LjQtNTYuNC0xMS04OS40LTExYy0xNTEuMywwLTI3MC43LDExMC4zLTI3OC4xLDI1My42QzYyLjcsNDcyLjEsMTAsNTQwLjEsMTAsNjIwLjRjMCw5Ni44LDc3LjgsMTc1LjIsMTczLjMsMTc1LjJoNTEuNEMyMTAuOSw3ODYuMywxODguOSw3NzIuMywxNzEuNyw3NTMuOUwxNzEuNyw3NTMuOXoiIHN0eWxlPSJmaWxsOiMwMGJiOWMiPjwvcGF0aD48cGF0aCBkPSJNNzY2LjQsMzUyLjFjLTM2LjEtOTcuNC0xMTMuMy0xNDQuNi0yMzUuOC0xNDQuNmMtMTUyLjUsMC0yNzMuMiwxMTAuOS0yODAuNSwyNTQuOGMtNzUuMywyMC4yLTEyOC42LDg4LjgtMTI4LjYsMTY5LjFjMCw4Mi43LDU3LDE1Mi41LDEzNC4xLDE3MC45aDU1NC4zQzkxNS4zLDc4MC44LDk5MCw2OTAuMiw5OTAsNTc5LjNDOTkwLDQ2Mi45LDg4OC45LDM2MS45LDc2Ni40LDM1Mi4xTDc2Ni40LDM1Mi4xeiBNNzg2LjcsNzY0LjNsLTEzLjUsMS44SDI5Ni42Yy03NC43LDAtMTMzLjUtNTkuNC0xMzMuNS0xMzQuOGMwLTY2LjIsNDYuNS0xMjEuOSwxMTAuOS0xMzIuM2wxOS0zLjFsLTEuOC0xOS42YzAtMTI5LjksMTAyLjktMjI3LjksMjM5LjUtMjI3LjljMTA5LDAsMTcyLjcsNDEsMjAwLjksMTI5LjJsNC4zLDE0LjFoMTQuN2MxMDUuNCwxLjgsMTk3LjgsODkuNCwxOTcuOCwxODcuNEM5NDksNjc1LjUsODgxLDc1My4zLDc4Ni43LDc2NC4zTDc4Ni43LDc2NC4zeiIgc3R5bGU9ImZpbGw6IzAwYmI5YyI+PC9wYXRoPjwvZz48L3N2Zz4KICA=" width="128" height="128">
+              <img src="img/weathercondition.svg" width="128" height="128">
               </div>
           </ui-view>
       </md-content>
     </div>
     <!-- Angular Material Dependencies -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-aria.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-animate.min.js"></script>
+    <script src="js/angular-aria.min.js"></script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>    
-    <script src="//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script> 
+    <script src="js/angular-material.min.js"></script>    
+    <script src="js/angular-material-icons.min.js"></script> 
    
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js'></script>
+    <script src='js/angular-ui-router.min.js'></script>
   </body>
 </html>
         <script src="js/index.js"></script>  
       
   </body>
 </html>
+
+

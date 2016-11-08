@@ -7,7 +7,7 @@ var app = angular.module('StarterApp', ['ngMaterial', 'ngMdIcons','ui.router'])
         })
         .state('aircheck', {
             url: "/aircheck",
-            templateUrl: "gjd.html",
+            templateUrl: "test.html",
             controller:'testCtrl'
         })
        .state('result', {
@@ -18,10 +18,6 @@ var app = angular.module('StarterApp', ['ngMaterial', 'ngMdIcons','ui.router'])
                result: null
              },
         })
-       /*.state('view3', {
-            url: "/view3",
-            templateUrl: "partials/view3.html"
-        });*/
     })
 
 app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog','$http','$state',
@@ -51,8 +47,8 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
           console.log(err)
       }); 
   }
-
-   $http({method: 'GET', url: 'http://api.openweathermap.org/data/2.5/weather?q=ilorin&APPID=39de5a4de44a198f40250fb3978354bc'}).
+var location = 'lagos';
+   $http({method: 'GET', url: 'http://api.openweathermap.org/data/2.5/weather?q='+location+'&APPID=79730c645e8981ff6b98876765d12388'}).
         then(function(response) {
           console.log(response)
           $scope.weather = response.data
@@ -126,6 +122,7 @@ app.controller('resultCtrl', function($scope,$state) {
 
 app.controller('testCtrl', function($scope,$state) {
 $scope.page_title = "Take a test";
+$scope.value = 0;
 $scope.symptoms = [
    {score:6,key:1,sickness:"wheezing"},
    {score:3,key:2,sickness:"sneezing"},
@@ -293,16 +290,6 @@ function getSickScore(sick){
   return cnt
 }
 });
-
-/*app.service('weatherInfo', function($scope, $http) {
-  var factory = {};
-  factory.get = function(){
-    
-  }
-  return factory;
-});*/
-
-
 
 function DialogController($scope, $mdDialog) {
   $scope.hide = function() {
