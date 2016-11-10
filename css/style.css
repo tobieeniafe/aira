@@ -51,7 +51,7 @@ md-sidenav ng-md-icon {
 }
 
 .layout1{
-  background-image: url('../img/Wall 2 (1).png');
+  background-image: url('../img/blue.png');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -59,7 +59,7 @@ md-sidenav ng-md-icon {
 }
 
 .layout2{
-   background-image: url('../img/sUNNY-01.png');
+   background-image: url('../img/sun.png');
    -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -1,5 +1,5 @@
 <div layout layout="row" layout-align="center center">
-              <h2 class="white-text">{{location}}</h2>
+              <h2 class="white-text"><i class="fa fa-map-marker" style="font-size: 35px"></i> {{location}}</h2>
               <br/>
           </div>
 
@@ -13,8 +13,8 @@
         </md-card-title>
         <md-card-content>
           <p style="text-align:center">
-          	<h4>Having analyzed the symptoms supplied. You have been diagnosed with</h4>
-          	<h2 ng-repeat="s in re.r" style="text-align:center"><a href="https://en.wikipedia.org/wiki/{{s}}" target="_blank">{{s}}</a></h2>
+          	<h4>Having analyzed the symptoms supplied. Your probable diagnosis is </h4>
+          	<h2 ng-repeat="s in re.r" style="text-align:center"><a href="https://en.wikipedia.org/wiki/{{s}}" target="_blank" style="text-decoration: underline;color: #039be5">{{s}}</a></h2>
           	<h4> It is recommended that you see a doctor</h4>
           </p>
           <md-card-actions layout="row" layout-align="end center">

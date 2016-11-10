@@ -41,16 +41,19 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
       //console.log("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
       $http({method: 'GET', url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ position.coords.latitude+','+ position.coords.longitude+'&key=AIzaSyBgtx0hkxaLuz_AG3iXUHe2gC3Rjoq7VSg'}).
         then(function(response) {
-          console.log(response )
+          //console.log(response )
           $scope.location = response.data.results[0].formatted_address;
         }, function(err) {
           console.log(err)
       }); 
   }
 var location = 'lagos';
+//$scope.search_location = 
+//var location = document.getElementById('search_location').value;
+
    $http({method: 'GET', url: 'http://api.openweathermap.org/data/2.5/weather?q='+location+'&APPID=79730c645e8981ff6b98876765d12388'}).
         then(function(response) {
-          console.log(response)
+          //console.log(response)
           $scope.weather = response.data
         }, function(err) {
           console.log(err)
@@ -122,26 +125,27 @@ app.controller('resultCtrl', function($scope,$state) {
 
 app.controller('testCtrl', function($scope,$state) {
 $scope.page_title = "Take a test";
-$scope.value = 0;
+$scope.default = 0; $scope.totalscore;
 $scope.symptoms = [
-   {score:6,key:1,sickness:"wheezing"},
-   {score:3,key:2,sickness:"sneezing"},
-   {score:6,key:3,sickness:"chest tightness"},
-   {score:6,key:4,sickness:"fatigue"},
-   {score:3,key:5,sickness:"shortness of breath"},
-   {score:3,key:6,sickness:"cough"},
-   {score:6,key:7,sickness:"slight fever"},
-   {score:12,key:8,sickness:"hoarseness"},
-   {score:12,key:9,sickness:"weight loss"},
-   {score:3,key:10,sickness:"mucus"},
-   {score:30,key:12,sickness:"blood"},
-   {score:12,key:13,sickness:"sore throat"},
-   {score:21,key:14,sickness:"nausea"},
-   {score:12,key:15,sickness:"sweating"},
-   {score:12,key:16,sickness:"allergy to dust"},
-   {score:12,key:17,sickness:"allergy to smoke"},
-   {score:21,key:18,sickness:"loss of appetite"}
+   {value:6 ,key:1,sickness:"wheezing"},
+   {value:3,key:2,sickness:"sneezing"},
+   {value:6,key:3,sickness:"chest tightness"},
+   {value:6,key:4,sickness:"fatigue"},
+   {value:3,key:5,sickness:"shortness of breath"},
+   {value:3,key:6,sickness:"cough"},
+   {value:6,key:7,sickness:"slight fever"},
+   {value:12,key:8,sickness:"hoarseness"},
+   {value:12,key:9,sickness:"weight loss"},
+   {value:3,key:10,sickness:"mucus"},
+   {value:30,key:12,sickness:"blood"},
+   {value:12,key:13,sickness:"sore throat"},
+   {value:21,key:14,sickness:"nausea"},
+   {value:12,key:15,sickness:"sweating"},
+   {value:12,key:16,sickness:"allergy to dust"},
+   {value:12,key:17,sickness:"allergy to smoke"},
+   {value:21,key:18,sickness:"loss of appetite"}
  ];
+ 
   $scope.asthma = [
     { symptom: 'wheezing',key:1},
     { symptom: 'chest tightness',key:3},
@@ -233,46 +237,97 @@ $scope.symptoms = [
   ];
 
 
-$scope.data = [];
-$scope.calculate = function(){
-  var score = 0;
-  angular.forEach($scope.data,function(i,k){
-    if(i!=false){
-      angular.forEach($scope.symptoms,function(j,u){
-        if(j.key == k){
-          score += j.score;
-        }
-      })
-    }    
-  })
-  //angular.forEach(total_sick_scores,function(k,v){
-    var res;
-    if(score <= 24){
+// $scope.data = [];
+// $scope.calculate = function(){
+//   var score = 0;
+//   angular.forEach($scope.data,function(i,k){
+//     if(i!=false){
+//       angular.forEach($scope.symptoms,function(j,u){
+//         if(j.key == k){
+//           score += j.score;
+//         }
+//       })
+//     }    
+//   });
+
+
+//   //angular.forEach(total_sick_scores,function(k,v){
+//     var res;
+//     if(score <= 24){
+//       res = ["Chronic Obstructive Pulmonary Disease"];
+//     }else if(score > 24 && score <= 28){
+//      res = ["Chronic Obstructive Pulmonary Disease"];
+//     }else if(score == 29){
+//       res = ["Chronic Obstructive Pulmonary Disease","Bronchitis"]
+//     }else if(score >=30 && score <=39){
+//      res = ["Bronchitis"]
+//     }else if(score == 40){
+//       res = ["Bronchitis","Asthma","Pneumonia"]
+//     }else if(score >=41 && score <=59){
+//        res = ["Asthma","Pneumonia"]
+//     }else if(score >= 60 && score <=75){
+//        res = ["Rhinitis"]
+//     }else if(score >= 76 && score <=80){
+//        res = ["Common Cold"]
+//     }else if(score >=81 && score <= 95){
+//         res = ["Lung Cancer"]
+//     }else if (score >= 96 && score <=171){
+//         res = ["Tuberculosis"]
+//     }
+//   //})
+//   var result = {r:res,s:score}
+//   $state.go('result',{result: result});
+//   //console.log(score)
+// }
+
+$scope.calculate = function() {
+  var wheezing = parseInt(document.getElementById('wheezing').value);
+  var sneezing = parseInt(document.getElementById('sneezing').value);
+  var chest_tightness = parseInt(document.getElementById('chest tightness').value);
+  var fatigue = parseInt(document.getElementById('fatigue').value);
+  var shortness_of_breath = parseInt(document.getElementById('shortness of breath').value);
+  var cough = parseInt(document.getElementById('cough').value);
+  var slight_fever = parseInt(document.getElementById('slight fever').value);
+  var hoarseness = parseInt(document.getElementById('hoarseness').value);
+  var weight_loss = parseInt(document.getElementById('weight loss').value);
+  var mucus = parseInt(document.getElementById('mucus').value);
+  var blood = parseInt(document.getElementById('blood').value);
+  var sore_throat = parseInt(document.getElementById('sore throat').value);
+  var nausea = parseInt(document.getElementById('nausea').value);
+  var sweating = parseInt(document.getElementById('sweating').value);
+  var allergy_to_dust = parseInt(document.getElementById('allergy to dust').value);
+  var allergy_to_smoke = parseInt(document.getElementById('allergy to smoke').value);
+  var loss_of_appetite = parseInt(document.getElementById('loss of appetite').value);
+
+  var score = wheezing + sneezing + chest_tightness + fatigue + shortness_of_breath + cough + slight_fever + hoarseness + weight_loss + mucus + blood + sore_throat + nausea + sweating + allergy_to_smoke + allergy_to_dust + loss_of_appetite;
+  console.log(score);
+
+  if (score == 0) {
+      res = ["You are fine :)"];
+    }else if(score <= 120){
       res = ["Chronic Obstructive Pulmonary Disease"];
-    }else if(score > 24 && score <= 28){
+    }else if(score > 120 && score <= 150){
      res = ["Chronic Obstructive Pulmonary Disease"];
-    }else if(score == 29){
+    }else if(score == 170){
       res = ["Chronic Obstructive Pulmonary Disease","Bronchitis"]
-    }else if(score >=30 && score <=39){
+    }else if(score >=180 && score <=200){
      res = ["Bronchitis"]
-    }else if(score == 40){
+    }else if(score == 220){
       res = ["Bronchitis","Asthma","Pneumonia"]
-    }else if(score >=41 && score <=59){
+    }else if(score >=230 && score <=290){
        res = ["Asthma","Pneumonia"]
-    }else if(score >= 60 && score <=75){
+    }else if(score >= 290 && score <=330){
        res = ["Rhinitis"]
-    }else if(score >= 76 && score <=80){
+    }else if(score >= 330 && score <=400){
        res = ["Common Cold"]
-    }else if(score >=81 && score <= 95){
-        res = ["Long Cancer"]
-    }else if (score >= 96 && score <=171){
+    }else if(score >=400 && score <= 500){
+        res = ["Lung Cancer"]
+    }else if (score >= 500){
         res = ["Tuberculosis"]
     }
-  //})
-  var result = {r:res,s:score}
-  $state.go('result',{result: result});
-  //console.log(score)
-}
+    var result = {r:res,s:score}
+   $state.go('result',{result: result});
+};
 
 var total_sick_scores = [getSickScore($scope.asthma),getSickScore($scope.copd),getSickScore($scope.tuberculosis),
                         getSickScore($scope.rhinitis),getSickScore($scope.pneumonia),getSickScore($scope.lungcancer),
@@ -311,10 +366,10 @@ app.directive('userAvatar', function() {
 });
 
 app.config(function($mdThemingProvider) {
-  var customBlueMap = 		$mdThemingProvider.extendPalette('light-blue', {
+  var customBlueMap =     $mdThemingProvider.extendPalette('orange', {
     'contrastDefaultColor': 'light',
     'contrastDarkColors': ['50'],
-    '50': 'ffffff'
+    '50': 'FF9800'
   });
   $mdThemingProvider.definePalette('customBlue', customBlueMap);
   $mdThemingProvider.theme('default')

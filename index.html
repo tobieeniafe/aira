@@ -2,7 +2,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Aircheck</title>
+    <title>aira&reg;</title>
 
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/style.css"> 
@@ -19,13 +19,13 @@
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" 
       md-is-locked-open="$mdMedia('gt-md')">
 
-      <md-toolbar class="md-tall md-hue-2">
+      <md-toolbar class="md-tall md-hue-1">
         <span flex></span>
         <div layout="column" class="md-toolbar-tools-bottom inset">
           <user-avatar></user-avatar>
           <span></span>
-          <div>Firstname Lastname</div>
-          <div>email@domainname.com</div>
+          <div style="color: #000;">Firstname Lastname</div>
+          <div style="color: #000;">email@domainname.com</div>
         </div>
       </md-toolbar>
       <md-list>
@@ -88,7 +88,8 @@
           </h3>
           <md-input-container md-theme="input" flex>
             <label>&nbsp;</label>
-            <input ng-model="search.who" placeholder="enter search">
+            <!-- <input ng-model="search.who" placeholder="enter location" id="search_location"> -->
+            <input ng-model="search_location" placeholder="enter location" id="search_location">
           </md-input-container>
           <md-button aria-label="Search" ng-click="showSearch = !showSearch">
             <ng-md-icon icon="search"></ng-md-icon>
