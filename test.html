@@ -5,10 +5,11 @@
 
            <div  layout="row" style="padding-left:200px">
 	           	<md-list flex>
+	           	<h2 class="white-text" style="font-family: 'Lato'">Select your symptoms and the degree in which they're felt </h2>
 	           		<div ng-repeat="sick in symptoms">
 	           				           			
 		           			<ng-md-icon icon="accessibility" style="fill:white"></ng-md-icon>
-		           			<label style="color:#fff" class="bold-text">{{sick.sickness}}</label>
+		           			<label style="color:#fff; font-family: 'Lato'" class="bold-text" >{{$index + 1}}. {{sick.sickness}}</label>
 			           		<!-- <md-slider ng-model="data[sick.key]" aria-label="Switch$index" min='0' max='10' step='1' flex md-discrete style='max-width:50%'></md-slider> -->
 			           		<md-slider ng-model="default" class='md-primary' aria-label="Switch$index" min='0' max='10' step='1' flex md-discrete  style='max-width:50%'></md-slider>
 			           		
